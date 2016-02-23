@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "FYLogger"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.license      = { :type => "MIT" }
   s.homepage     = "https://github.com/syxc/FYLogger"
   s.author       = { "syxc" => "gaibing2009@gmail.com" }
@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/syxc/FYLogger.git", :tag => s.version }
 
   s.ios.deployment_target = "8.0"
-  s.source_files = ["Sources/*.swift", "Sources/*.h"]
-  # s.public_header_files = ["Sources/FYLogger.h"]
+  s.source_files = ["FYLogger/Source/*.swift", "FYLogger/Source/*.h"]
+  s.public_header_files = ["FYLogger/FYLogger.h"]
   s.ios.frameworks = "UIKit", "Foundation"
   s.requires_arc = true
 end

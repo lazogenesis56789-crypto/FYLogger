@@ -1,12 +1,13 @@
 //
-//  FYLogger.swift
-//  FYLogger
+//  FYLog.swift
+//  FYLog
 //
 //  Created by syxc on 16/2/23.
 //  Copyright © 2016年 syxc. All rights reserved.
 //
 
 import Foundation
+import UIKit
 
 public enum LogLevel: String {
   case Verbose = "VERBOSE"
@@ -20,13 +21,13 @@ public protocol Logger {
   func log(level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String)
 }
 
-public class FYLogger: Logger {
+public class FYLog: Logger {
   public var debug: Bool = true
   public var details: Bool = true
   
-  init() {}
+  public init() {}
   
-  init(debug: Bool, details: Bool) {
+  public init(debug: Bool, details: Bool) {
     self.debug = debug
     self.details = details
   }
@@ -46,7 +47,7 @@ public class FYLogger: Logger {
   }
 }
 
-extension FYLogger {
+extension FYLog {
   /// Verbose
   public func verbose(msg: String, funcName: String = __FUNCTION__,
     lineNum: Int = __LINE__, fileName: String = __FILE__ ) {
@@ -76,18 +77,15 @@ extension FYLogger {
     lineNum: Int = __LINE__, fileName: String = __FILE__) {
       log(.Error, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
-}
-
-
-/* ---------- iOS ---------- */
-
-/* By using Swift build flags, different log levels can be used in debugging versus staging/production. Go to Build settings -> Swift Compiler - Custom Flags -> Other Swift Flags and add -DDEBUG to the Debug entry. */
-
-#if DEBUG
-  import UIKit
   
+  
+  /* ---------- iOS ---------- */
+  
+  /* By using Swift build flags, different log levels can be used in debugging versus staging/production. Go to Build settings -> Swift Compiler - Custom Flags -> Other Swift Flags and add -DDEBUG to the Debug entry. */
+  
+  #if DEBUG
   /// Show logger in UIAlertView
-  func alertLog(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+  public func alert(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
     let alertView = UIAlertView(
       title: "\((filename as NSString).lastPathComponent) [line:\(line)]",
       message: "\(function) --- \(message)",
@@ -95,7 +93,7 @@ extension FYLogger {
       cancelButtonTitle:"OK")
     alertView.show()
   }
-#else
-  func alertLog(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {}
-#endif
-
+  #else
+  public func alert(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {}
+  #endif
+}

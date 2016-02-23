@@ -1,15 +1,15 @@
 //
-//  FYLoggerDemoTests.swift
-//  FYLoggerDemoTests
+//  FYLoggerTests.swift
+//  FYLoggerTests
 //
-//  Created by syxc on 16/2/23.
+//  Created by syxc on 16/2/24.
 //  Copyright © 2016年 syxc. All rights reserved.
 //
 
 import XCTest
-@testable import FYLoggerDemo
+@testable import FYLogger
 
-class FYLoggerDemoTests: XCTestCase {
+class FYLoggerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

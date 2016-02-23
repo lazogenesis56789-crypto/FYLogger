@@ -11,9 +11,9 @@ import UIKit
 class MainViewController: UIViewController {
   
   override func viewDidLoad() {
-    super.viewDidLoad()    
-    logger.info("from \(self.classForCoder)")
-    alertLog("from \(self.classForCoder)")
+    super.viewDidLoad()
+    log.info("from \(self.classForCoder)")
+    log.alert("from \(self.classForCoder)")
   }
   
   override func didReceiveMemoryWarning() {
