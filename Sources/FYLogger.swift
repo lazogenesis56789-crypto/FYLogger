@@ -87,7 +87,7 @@ extension FYLogger {
   import UIKit
   
   /// Show logger in UIAlertView
-  func alert(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+  func alertLog(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
     let alertView = UIAlertView(
       title: "\((filename as NSString).lastPathComponent) [line:\(line)]",
       message: "\(function) --- \(message)",
@@ -96,6 +96,6 @@ extension FYLogger {
     alertView.show()
   }
 #else
-  func alert(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {}
+  func alertLog(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {}
 #endif
 

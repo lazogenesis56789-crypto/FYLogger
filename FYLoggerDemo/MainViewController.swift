@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()    
     logger.info("from \(self.classForCoder)")
-    alert("from \(self.classForCoder)")
+    alertLog("from \(self.classForCoder)")
   }
   
   override func didReceiveMemoryWarning() {

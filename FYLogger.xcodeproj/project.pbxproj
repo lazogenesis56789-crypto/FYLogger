@@ -12,6 +12,7 @@
 		4C3308011C7C57C70091194C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3307FF1C7C57C70091194C /* LaunchScreen.storyboard */; };
 		4C33080C1C7C57C70091194C /* FYLoggerDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C33080B1C7C57C70091194C /* FYLoggerDemoTests.swift */; };
 		4C33083B1C7C5EAF0091194C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C33083A1C7C5EAE0091194C /* MainViewController.swift */; };
+		4C408A601C7CA388003A2507 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C408A5F1C7CA388003A2507 /* Info.plist */; };
 		4C74446F1C7C7C6900598533 /* FYLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C74446E1C7C7C6900598533 /* FYLogger.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,8 @@
 		4C33080B1C7C57C70091194C /* FYLoggerDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYLoggerDemoTests.swift; sourceTree = "<group>"; };
 		4C33080D1C7C57C70091194C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C33083A1C7C5EAE0091194C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4C408A5E1C7CA388003A2507 /* FYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYLogger.h; sourceTree = "<group>"; };
+		4C408A5F1C7CA388003A2507 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C74446E1C7C7C6900598533 /* FYLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FYLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +102,8 @@
 		4C74446D1C7C7C6900598533 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				4C408A5E1C7CA388003A2507 /* FYLogger.h */,
+				4C408A5F1C7CA388003A2507 /* Info.plist */,
 				4C74446E1C7C7C6900598533 /* FYLogger.swift */,
 			);
 			path = Sources;
@@ -187,6 +192,7 @@
 			files = (
 				4C3307FE1C7C57C70091194C /* Assets.xcassets in Resources */,
 				4C3308011C7C57C70091194C /* LaunchScreen.storyboard in Resources */,
+				4C408A601C7CA388003A2507 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
