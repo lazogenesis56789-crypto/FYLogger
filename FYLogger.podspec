@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = "8.0"
   s.source_files = ["FYLogger/Source/*.swift", "FYLogger/Source/*.h"]
-  s.public_header_files = ["FYLogger/FYLogger.h"]
+  # s.public_header_files = ["FYLogger/FYLogger.h"]
   s.ios.frameworks = "UIKit", "Foundation"
   s.requires_arc = true
 end
