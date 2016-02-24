@@ -5,9 +5,16 @@
 //  Created by syxc on 16/2/23.
 //  Copyright © 2016年 syxc. All rights reserved.
 //
+//  By using Swift build flags, different log levels can be used in debugging versus staging/production.
+//  Go to Build settings -> Swift Compiler - Custom Flags -> Other Swift Flags and add -DDEBUG to the Debug entry.
+//
+//  Inspired by https://github.com/IBM-Swift/HeliumLogger
+//
 
 import Foundation
-import UIKit
+#if os(iOS)
+  import UIKit
+#endif
 
 public enum LogLevel: String {
   case Verbose = "VERBOSE"
@@ -34,15 +41,13 @@ public class FYLog: Logger {
   
   public func log(level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String) {
     guard debug else {
-      /* Release model */
       return
     }
-    
-    /* Debug model */
+    // Debug model
     if details {
-      print("[\(level.rawValue)] \(funcName) \((fileName as NSString).lastPathComponent) [line:\(lineNum)] --- \(msg)")
+      print("\(now()) [\(level.rawValue)] \(funcName) \((fileName as NSString).lastPathComponent) [line:\(lineNum)] --- \(msg)")
     } else {
-      print("[\(level.rawValue)] \(msg)")
+      print("\(now()) [\(level.rawValue)] \(msg)")
     }
   }
 }
@@ -78,22 +83,33 @@ extension FYLog {
       log(.Error, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
-  
   /* ---------- iOS ---------- */
   
-  /* By using Swift build flags, different log levels can be used in debugging versus staging/production. Go to Build settings -> Swift Compiler - Custom Flags -> Other Swift Flags and add -DDEBUG to the Debug entry. */
-  
-  #if DEBUG
-  /// Show logger in UIAlertView
+  /// Show log in UIAlertView
   public func alert(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
-    let alertView = UIAlertView(
-      title: "\((filename as NSString).lastPathComponent) [line:\(line)]",
-      message: "\(function) --- \(message)",
-      delegate:nil,
-      cancelButtonTitle:"OK")
-    alertView.show()
+    guard debug else {
+      return
+    }
+    #if os(iOS)
+      let alertView = UIAlertView(
+        title: "\((filename as NSString).lastPathComponent) [line:\(line)]",
+        message: "\(now()) \(function) --- \(message)",
+        delegate:nil,
+        cancelButtonTitle:"OK")
+      alertView.show()
+    #endif
   }
-  #else
-  public func alert(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {}
-  #endif
+  
+  // MARK: - Helper
+  
+  /// Get current date
+  func now() -> String {
+    let date: NSDate = NSDate()
+    let fmt: NSDateFormatter = NSDateFormatter()
+    fmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    guard let now: String = fmt.stringFromDate(date) else {
+      return ""
+    }
+    return now
+  }
 }

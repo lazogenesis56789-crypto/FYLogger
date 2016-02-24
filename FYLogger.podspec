@@ -8,16 +8,14 @@
 
 Pod::Spec.new do |s|
   s.name         = "FYLogger"
-  s.version      = "0.0.3"
-  s.license      = { :type => "MIT" }
+  s.version      = "0.0.4"
+  s.license      = { :type => "MIT", :file => "LICENSE" }
   s.homepage     = "https://github.com/syxc/FYLogger"
   s.author       = { "syxc" => "gaibing2009@gmail.com" }
   s.summary      = "A tiny logging framework for iOS"
   s.source       = { :git => "https://github.com/syxc/FYLogger.git", :tag => s.version }
-
   s.ios.deployment_target = "8.0"
-  s.source_files = ["FYLogger/Source/*.swift", "FYLogger/Source/*.h"]
-  # s.public_header_files = ["FYLogger/FYLogger.h"]
+  s.source_files = ["FYLogger/Source/*.swift"]
   s.ios.frameworks = "UIKit", "Foundation"
   s.requires_arc = true
 end

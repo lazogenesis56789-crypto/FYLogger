@@ -16,6 +16,8 @@
 		4C408AA81C7CC7C4003A2507 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C408AA71C7CC7C4003A2507 /* ExampleTests.swift */; };
 		4C408AB11C7CC89A003A2507 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C408AB01C7CC89A003A2507 /* MainViewController.swift */; };
 		4CC04E991C7CCFB200EF9F38 /* FYLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC04E981C7CCFB200EF9F38 /* FYLog.swift */; };
+		4CE1D9B21C7D607900D3FABE /* FYLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C408A741C7CC5F4003A2507 /* FYLogger.framework */; };
+		4CE1D9B31C7D607900D3FABE /* FYLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C408A741C7CC5F4003A2507 /* FYLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,20 @@
 			remoteInfo = FYLogger;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4CE1D9B41C7D607900D3FABE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4CE1D9B31C7D607900D3FABE /* FYLogger.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4C408A741C7CC5F4003A2507 /* FYLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FYLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE1D9B21C7D607900D3FABE /* FYLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +238,7 @@
 				4C408A911C7CC7C4003A2507 /* Sources */,
 				4C408A921C7CC7C4003A2507 /* Frameworks */,
 				4C408A931C7CC7C4003A2507 /* Resources */,
+				4CE1D9B41C7D607900D3FABE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -495,7 +513,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.syxc.FYLogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -543,6 +561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -556,6 +575,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
