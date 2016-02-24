@@ -107,9 +107,9 @@ extension FYLog {
     let date: NSDate = NSDate()
     let fmt: NSDateFormatter = NSDateFormatter()
     fmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    guard let now: String = fmt.stringFromDate(date) else {
-      return ""
+    if let now: String = fmt.stringFromDate(date) {
+      return now
     }
-    return now
+    return "🙇"
   }
 }

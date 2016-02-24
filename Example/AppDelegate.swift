@@ -9,6 +9,14 @@
 import UIKit
 import FYLogger
 
+var appDebug: Bool {
+  #if DEBUG
+    return true
+  #else
+    return false
+  #endif
+}
+
 let log = FYLog()
 
 @UIApplicationMain
@@ -53,16 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
   
-  /**
-   Setup FYLogger
-   */
+  /// Setup FYLogger
   func setupLogger() {
-    #if DEBUG
-      log.debug = true
-    #else
-      log.debug = false
-    #endif
+    log.debug = appDebug
   }
-  
 }
 
