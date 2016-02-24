@@ -28,7 +28,7 @@ class FYLoggerTests: XCTestCase {
   }
   
   func testSimpleIfText() {
-    assert(simpleIfText == "abc", "simpleGuardText value is 'abc'")
+    assert(simpleIfText == "abc", "simpleIfText value is 'abc'")
   }
   
   func testPerformanceExample() {
