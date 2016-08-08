@@ -16,12 +16,29 @@ import Foundation
   import UIKit
 #endif
 
-public enum LogLevel: String {
-  case Verbose = "VERBOSE"
-  case Info    = "INFO"
-  case Debug   = "DEBUG"
-  case Warn    = "WARN"
-  case Error   = "ERROR"
+public enum LogLevel: Int {
+  case Verbose = 1
+  case Info    = 2
+  case Debug   = 3
+  case Warn    = 4
+  case Error   = 5
+}
+
+extension LogLevel : CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case .Verbose:
+      return "VERBOSE"
+    case .Info:
+      return "INFO"
+    case .Debug:
+      return "DEBUG"
+    case .Warn:
+      return "WARN"
+    case .Error:
+      return "ERROR"
+    }
+  }
 }
 
 public protocol Logger {
@@ -45,41 +62,36 @@ public class FYLog: Logger {
     }
     // Debug model
     if details {
-      print("\(now()) [\(level.rawValue)] \(funcName) \((fileName as NSString).lastPathComponent) [line:\(lineNum)] --- \(msg)")
+      print("\(now()) [\(level.description)] \(funcName) \((fileName as NSString).lastPathComponent) [line:\(lineNum)] --- \(msg)")
     } else {
-      print("\(now()) [\(level.rawValue)] \(msg)")
+      print("\(now()) [\(level.description)] \(msg)")
     }
   }
 }
 
 extension FYLog {
   /// Verbose
-  public func verbose(msg: String, funcName: String = #function,
-                      lineNum: Int = #line, fileName: String = #file ) {
+  public func verbose(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
     log(.Verbose, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Info
-  public func info(msg: String, funcName: String = #function,
-                   lineNum: Int = #line, fileName: String = #file) {
+  public func info(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
     log(.Info, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Debug
-  public func debug(msg: String, funcName: String = #function,
-                    lineNum: Int = #line, fileName: String = #file) {
+  public func debug(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
     log(.Debug, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Warn
-  public func warn(msg: String, funcName: String = #function,
-                   lineNum: Int = #line, fileName: String = #file) {
+  public func warn(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
     log(.Warn, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Error
-  public func error(msg: String, funcName: String = #function,
-                    lineNum: Int = #line, fileName: String = #file) {
+  public func error(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
     log(.Error, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
