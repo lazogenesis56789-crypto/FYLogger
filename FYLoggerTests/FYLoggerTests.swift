@@ -39,6 +39,7 @@ class FYLoggerTests: XCTestCase {
   }
   
   var simpleGuardText: String {
+    print("---------- simpleGuardText, log.debug = \(log.debug)")
     guard log.debug else {
       return "abc"
     }
@@ -46,6 +47,7 @@ class FYLoggerTests: XCTestCase {
   }
   
   var simpleIfText: String {
+    print("---------- simpleIfText, log.debug = \(log.debug)")
     if log.debug {
       return "abc"
     }

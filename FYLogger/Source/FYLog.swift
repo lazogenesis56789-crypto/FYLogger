@@ -54,46 +54,48 @@ public class FYLog: Logger {
 
 extension FYLog {
   /// Verbose
-  public func verbose(msg: String, funcName: String = __FUNCTION__,
-    lineNum: Int = __LINE__, fileName: String = __FILE__ ) {
-      log(.Verbose, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func verbose(msg: String, funcName: String = #function,
+                      lineNum: Int = #line, fileName: String = #file ) {
+    log(.Verbose, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Info
-  public func info(msg: String, funcName: String = __FUNCTION__,
-    lineNum: Int = __LINE__, fileName: String = __FILE__) {
-      log(.Info, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func info(msg: String, funcName: String = #function,
+                   lineNum: Int = #line, fileName: String = #file) {
+    log(.Info, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Debug
-  public func debug(msg: String, funcName: String = __FUNCTION__,
-    lineNum: Int = __LINE__, fileName: String = __FILE__) {
-      log(.Debug, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func debug(msg: String, funcName: String = #function,
+                    lineNum: Int = #line, fileName: String = #file) {
+    log(.Debug, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Warn
-  public func warn(msg: String, funcName: String = __FUNCTION__,
-    lineNum: Int = __LINE__, fileName: String = __FILE__) {
-      log(.Warn, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func warn(msg: String, funcName: String = #function,
+                   lineNum: Int = #line, fileName: String = #file) {
+    log(.Warn, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Error
-  public func error(msg: String, funcName: String = __FUNCTION__,
-    lineNum: Int = __LINE__, fileName: String = __FILE__) {
-      log(.Error, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func error(msg: String, funcName: String = #function,
+                    lineNum: Int = #line, fileName: String = #file) {
+    log(.Error, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /* ---------- iOS ---------- */
   
   /// Show log in UIAlertView
-  public func alert(message: String, filename: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+  public func alert(message: String, filename: String = #file, function: String = #function, line: Int = #line) {
     guard debug else {
       return
     }
     #if os(iOS)
+      let titleString = "\((filename as NSString).lastPathComponent) [line:\(line)]"
+      let messageString = "\(now()) \(function) --- \(message)"
       let alertView = UIAlertView(
-        title: "\((filename as NSString).lastPathComponent) [line:\(line)]",
-        message: "\(now()) \(function) --- \(message)",
+        title: titleString,
+        message: messageString,
         delegate:nil,
         cancelButtonTitle:"OK")
       alertView.show()
