@@ -24,7 +24,7 @@ public enum LogLevel: Int {
   case Error   = 5
 }
 
-extension LogLevel : CustomStringConvertible {
+extension LogLevel: CustomStringConvertible {
   public var description: String {
     switch self {
     case .Verbose:
