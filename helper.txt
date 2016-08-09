@@ -1,0 +1,12 @@
+Making a CocoaPod
+
+https://guides.cocoapods.org/making/making-a-cocoapod.html
+
+Testing
+  pod lib lint
+
+Submitting Open Source Code
+  pod trunk push NAME.podspec
+
+Submitting Private Code
+  pod repo push [repo] NAME.podspec
