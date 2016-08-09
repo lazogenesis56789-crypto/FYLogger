@@ -1,4 +1,8 @@
 # FYLogger
+
+[![Version](https://img.shields.io/cocoapods/v/FYLogger.svg?style=flat)](http://cocoapods.org/pods/FYLogger)
+[![Build Status](https://travis-ci.org/syxc/FYLogger.svg?branch=master)](https://travis-ci.org/syxc/FYLogger)
+
 A tiny logging framework for iOS, Inspired by [HeliumLogger](https://github.com/IBM-Swift/HeliumLogger).
 
 ### Features
