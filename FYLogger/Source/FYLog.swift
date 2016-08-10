@@ -144,8 +144,8 @@ extension FYLog {
 
 // MARK: - String
 
-private extension String {
+internal extension String {
   var lastPathComponent: String {
-    return (self as NSString).lastPathComponent
+    return NSString(string: self).lastPathComponent
   }
 }
