@@ -17,12 +17,12 @@ import Foundation
 #endif
 
 public enum LogLevel {
-  case Verbose, Debug, Info, Warn, Error
+  case verbose, debug, info, warn, error
 }
 
 extension LogLevel: Comparable {
   var description: String {
-    return String(self).uppercaseString
+    return String(self).uppercased()
   }
 }
 
@@ -36,7 +36,7 @@ public func <(x: LogLevel, y: LogLevel) -> Bool {
 
 
 public protocol Logger {
-  func log(level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String)
+  func log(_ level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String)
 }
 
 
@@ -48,7 +48,7 @@ public class FYLog: Logger {
   public var details: Bool = true
   
   /// The minimum level of severity
-  public var minLevel: LogLevel = .Verbose
+  public var minLevel: LogLevel = .verbose
   
   public init() {}
   
@@ -61,13 +61,13 @@ public class FYLog: Logger {
    
    - returns: A new logger instance.
    */
-  public init(debug: Bool, details: Bool, minLevel: LogLevel = .Verbose) {
+  public init(debug: Bool, details: Bool, minLevel: LogLevel = .verbose) {
     self.debug = debug
     self.details = details
     self.minLevel = minLevel
   }
   
-  public func log(level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String) {
+  public func log(_ level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String) {
     guard debug && level >= minLevel else {
       return
     }
@@ -77,7 +77,7 @@ public class FYLog: Logger {
       result = "\(now()) [\(level.description)] \(funcName) \(fileName.lastPathComponent) [line:\(lineNum)] --- \(msg)"
     }
     
-    dispatch_async(dispatch_queue_create("FYLogger", DISPATCH_QUEUE_SERIAL)) {
+    DispatchQueue.global().async {
       Swift.print(result)
     }
   }
@@ -85,34 +85,34 @@ public class FYLog: Logger {
 
 extension FYLog {
   /// Verbose
-  public func verbose(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.Verbose, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func verbose(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
+    log(.verbose, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Debug
-  public func debug(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.Debug, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func debug(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
+    log(.debug, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Info
-  public func info(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.Info, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func info(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
+    log(.info, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Warn
-  public func warn(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.Warn, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func warn(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
+    log(.warn, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Error
-  public func error(msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.Error, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+  public func error(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
+    log(.error, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /* ---------- iOS ---------- */
   
   /// Show log in UIAlertView
-  public func alert(message: String, filename: String = #file, function: String = #function, line: Int = #line) {
+  public func alert(_ message: String, filename: String = #file, function: String = #function, line: Int = #line) {
     guard debug else {
       return
     }
@@ -132,10 +132,10 @@ extension FYLog {
   
   /// Get current date
   private func now() -> String {
-    let date: NSDate = NSDate()
-    let fmt: NSDateFormatter = NSDateFormatter()
+    let date: Date = Date()
+    let fmt: DateFormatter = DateFormatter()
     fmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    if let now: String = fmt.stringFromDate(date) {
+    if let now: String = fmt.string(from: date) {
       return now
     }
     return "🙇"
