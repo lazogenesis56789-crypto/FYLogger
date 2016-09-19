@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "FYLogger"
-  s.version      = "0.81"
+  s.version      = "0.82"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.homepage     = "https://github.com/syxc/FYLogger"
   s.author       = { "syxc" => "gaibing2009@gmail.com" }

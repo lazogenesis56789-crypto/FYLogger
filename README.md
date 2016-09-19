@@ -11,6 +11,11 @@ A tiny logging framework for iOS, Inspired by [HeliumLogger](https://github.com/
 - Support Show logging in `UIAlertView`
 - Debug, Release model
 
+## Branch
+
+- Swift 2.2 - 2.3 & Xcode 8.0 `swift2.3`
+- Swift 3.0 & Xcode 8.0 `master`
+
 ## Installation
 
 FYLogger supports multiple methods for installing the library in a project.

@@ -5,6 +5,10 @@
 - Unit test
 - Update version
 
+### 0.82 -- 2016-09-19
+
+- Support Swift 3.0 & Xcode 8.0
+
 ### 0.0.7 -- 2016-08-08
 
 - Support Swift 2.2
