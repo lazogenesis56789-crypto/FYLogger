@@ -22,7 +22,7 @@ public enum LogLevel {
 
 extension LogLevel: Comparable {
   var description: String {
-    return String(self).uppercased()
+    return String(describing: self).uppercased()
   }
 }
 
@@ -35,20 +35,20 @@ public func <(x: LogLevel, y: LogLevel) -> Bool {
 }
 
 
-public protocol Logger {
-  func log(_ level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String)
+fileprivate protocol Logger {
+  func log(level aLevel: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String)
 }
 
 
-public class FYLog: Logger {
+open class FYLog: Logger {
   /// The logger state
-  public var debug: Bool = true
+  open var debug: Bool = true
   
   /// The details
-  public var details: Bool = true
+  open var details: Bool = true
   
   /// The minimum level of severity
-  public var minLevel: LogLevel = .verbose
+  open var minLevel: LogLevel = .verbose
   
   public init() {}
   
@@ -67,14 +67,14 @@ public class FYLog: Logger {
     self.minLevel = minLevel
   }
   
-  public func log(_ level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String) {
-    guard debug && level >= minLevel else {
+  fileprivate func log(level aLevel: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String) {
+    guard debug && aLevel >= minLevel else {
       return
     }
     
-    var result = "\(now()) [\(level.description)] \(msg)"
+    var result = "\(now()) [\(aLevel.description)] \(msg)"
     if details {
-      result = "\(now()) [\(level.description)] \(funcName) \(fileName.lastPathComponent) [line:\(lineNum)] --- \(msg)"
+      result = "\(now()) [\(aLevel.description)] \(funcName) \(fileName.lastPathComponent) [line:\(lineNum)] --- \(msg)"
     }
     
     DispatchQueue.global().async {
@@ -86,27 +86,27 @@ public class FYLog: Logger {
 extension FYLog {
   /// Verbose
   public func verbose(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.verbose, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+    log(level: .verbose, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Debug
   public func debug(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.debug, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+    log(level: .debug, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Info
   public func info(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.info, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+    log(level: .info, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Warn
   public func warn(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.warn, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+    log(level: .warn, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /// Error
   public func error(_ msg: String, funcName: String = #function, lineNum: Int = #line, fileName: String = #file) {
-    log(.error, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
+    log(level: .error, msg: msg, funcName: funcName, lineNum: lineNum, fileName: fileName)
   }
   
   /* ---------- iOS ---------- */
@@ -130,15 +130,14 @@ extension FYLog {
   
   // MARK: - Helper
   
-  /// Get current date
-  private func now() -> String {
+  /// Get the current date.
+  ///
+  /// - returns: Current date.
+  fileprivate func now() -> String {
     let date: Date = Date()
     let fmt: DateFormatter = DateFormatter()
     fmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    if let now: String = fmt.string(from: date) {
-      return now
-    }
-    return "🙇"
+    return fmt.string(from: date)
   }
 }
 
@@ -146,6 +145,6 @@ extension FYLog {
 
 internal extension String {
   var lastPathComponent: String {
-    return NSString(string: self).lastPathComponent
+    return (self as NSString).lastPathComponent
   }
 }
