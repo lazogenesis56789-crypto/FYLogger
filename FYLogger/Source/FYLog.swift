@@ -35,7 +35,7 @@ public func <(x: LogLevel, y: LogLevel) -> Bool {
 }
 
 
-public protocol Logger {
+private protocol Logger {
   func log(level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String)
 }
 
@@ -67,7 +67,7 @@ public class FYLog: Logger {
     self.minLevel = minLevel
   }
   
-  public func log(level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String) {
+  private func log(level: LogLevel, msg: String, funcName: String, lineNum: Int, fileName: String) {
     guard debug && level >= minLevel else {
       return
     }
@@ -135,10 +135,7 @@ extension FYLog {
     let date: NSDate = NSDate()
     let fmt: NSDateFormatter = NSDateFormatter()
     fmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    if let now: String = fmt.stringFromDate(date) {
-      return now
-    }
-    return "🙇"
+    return fmt.stringFromDate(date)
   }
 }
 
